@@ -1,0 +1,54 @@
+# Simple Student Grade Tracker in Python
+
+# Function to calculate the grade based on the average score
+def calculate_grade(average):
+    if average >= 90:
+        return 'A'
+    elif average >= 80:
+        return 'B'
+    elif average >= 70:
+        return 'C'
+    elif average >= 60:
+        return 'D'
+    else:
+        return 'F'
+
+# Function to track student grades
+def grade_tracker():
+    students = []
+    num_students = int(input("Enter the number of students: "))
+
+    for _ in range(num_students):
+        name = input("\nEnter student's name: ")
+        num_subjects = int(input(f"Enter number of subjects for {name}: "))
+
+        grades = []
+        for i in range(num_subjects):
+            grade = float(input(f"Enter grade for subject {i+1}: "))
+            grades.append(grade)
+        
+        # Calculate the average grade
+        average = sum(grades) / len(grades)
+        
+        # Get the letter grade
+        letter_grade = calculate_grade(average)
+        
+        # Store the student data
+        students.append({
+            'name': name,
+            'grades': grades,
+            'average': average,
+            'letter_grade': letter_grade
+        })
+
+    # Display the results for all students
+    print("\nStudent Grade Report:")
+    for student in students:
+        print(f"\nName: {student['name']}")
+        print(f"Grades: {student['grades']}")
+        print(f"Average Grade: {student['average']:.2f}")
+        print(f"Letter Grade: {student['letter_grade']}")
+
+# Run the grade tracker
+if __name__ == "__main__":
+    grade_tracker()
